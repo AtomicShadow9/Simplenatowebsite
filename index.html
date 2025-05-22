@@ -38,8 +38,8 @@
             right: 0;
             height: 100px;
             overflow-x: hidden;
-            background: white;
-            border-top: 2px solid black;
+            background: linear-gradient(to right, #1e40af, #60a5fa);
+            border-top: 4px solid black;
             z-index: 20;
         }
         .timeline {
@@ -56,8 +56,8 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: black;
-            border-right: 2px solid black;
+            color: white;
+            border-right: 4px solid black;
             position: relative;
         }
         .timeline-item::before {
@@ -66,14 +66,13 @@
             top: 8px;
             width: 8px;
             height: 8px;
-            background: #2563eb;
+            background: white;
             border-radius: 50%;
         }
         .timeline-item h5 {
             font-size: 1rem;
             font-weight: 600;
             margin-bottom: 0.25rem;
-            color: #2563eb;
         }
         .timeline-item p {
             font-size: 0.8rem;
@@ -84,7 +83,7 @@
             padding-bottom: 120px; /* Prevents content overlap with fixed timeline */
         }
         section {
-            border: 2px solid black;
+            border: 4px solid black;
             transition: background-color 0.2s ease;
         }
         section:hover {
@@ -93,7 +92,7 @@
     </style>
 </head>
 <body class="bg-white font-sans text-black">
-    <header class="bg-white text-black py-6 text-center border-b-2 border-black">
+    <header class="bg-white text-black py-6 text-center border-b-4 border-black">
         <h1 class="text-3xl font-semibold animate-fade-in" style="animation-delay: 0.1s;">NATO Research Site</h1>
         <p class="mt-2 text-base animate-fade-in underline-hover" style="animation-delay: 0.2s;">
             Exploring the history and mission of NATO
@@ -146,10 +145,45 @@
         </section>
 
         <section class="bg-white rounded-md p-5 animate-fade-in" style="animation-delay: 1.2s;">
+            <h4 class="text-xl font-medium text-blue-600 mb-3">NATO's Partnerships</h4>
+            <p class="text-black leading-relaxed text-sm">
+                NATO maintains partnerships with non-member countries to enhance global security. Programs like the Partnership for Peace (PfP), established in 1994, foster cooperation with countries in Europe and the former Soviet Union. NATO also collaborates with nations through the Mediterranean Dialogue, Istanbul Cooperation Initiative, and bilateral partnerships with countries like Australia and Japan. These partnerships promote joint training, interoperability, and dialogue on security issues, extending NATO's influence beyond its member states.
+            </p>
+        </section>
+
+        <section class="bg-white rounded-md p-5 animate-fade-in" style="animation-delay: 1.3s;">
+            <h4 class="text-xl font-medium text-blue-600 mb-3">NATO and Technology</h4>
+            <p class="text-black leading-relaxed text-sm">
+                NATO invests in emerging technologies to address modern security challenges. The Defence Innovation Accelerator for the North Atlantic (DIANA) supports research in AI, cybersecurity, and quantum computing. NATO's Science and Technology Organization (STO) conducts cutting-edge research to enhance defense capabilities. These initiatives ensure the alliance remains at the forefront of technological advancements, particularly in countering cyber threats and hybrid warfare.
+            </p>
+        </section>
+
+        <section class="bg-white rounded-md p-5 animate-fade-in" style="animation-delay: 1.4s;">
+            <h4 class="text-xl font-medium text-blue-600 mb-3">NATO Enlargement Process</h4>
+            <p class="text-black leading-relaxed text-sm">
+                NATO's enlargement process allows countries to join the alliance through a structured accession process. Aspiring members must meet democratic, military, and economic standards outlined in the 1995 Study on NATO Enlargement. Countries like Finland and Sweden joined in 2023 and 2024, respectively, after completing Membership Action Plans (MAPs). The open-door policy remains a cornerstone of NATO's commitment to expanding collective security.
+            </p>
+        </section>
+
+        <section class="bg-white rounded-md p-5 animate-fade-in" style="animation-delay: 1.5s;">
+            <h4 class="text-xl font-medium text-blue-600 mb-3">NATO's Crisis Response</h4>
+            <p class="text-black leading-relaxed text-sm">
+                NATO plays a vital role in crisis response, deploying forces and resources to address conflicts and humanitarian emergencies. The NATO Response Force (NRF), established in 2002, provides rapid deployment capabilities for crises like natural disasters or military conflicts. Operations in Kosovo (KFOR) and support for disaster relief, such as after the 2005 Pakistan earthquake, demonstrate NATO's commitment to global stability and humanitarian aid.
+            </p>
+        </section>
+
+        <section class="bg-white rounded-md p-5 animate-fade-in" style="animation-delay: 1.6s;">
+            <h4 class="text-xl font-medium text-blue-600 mb-3">Future Challenges for NATO</h4>
+            <p class="text-black leading-relaxed text-sm">
+                NATO faces evolving challenges, including hybrid warfare, climate change, and geopolitical tensions. The alliance is adapting by strengthening cyber defenses, addressing the security implications of climate change, and countering disinformation campaigns. NATO's 2022 Strategic Concept emphasizes resilience and partnerships to tackle these issues, ensuring the alliance remains prepared for future threats in a rapidly changing world.
+            </p>
+        </section>
+
+        <section class="bg-white rounded-md p-5 animate-fade-in" style="animation-delay: 1.7s;">
             <h4 class="text-xl font-medium text-blue-600 mb-3">Credits</h4>
             <ul class="list-none space-y-1 text-black text-sm">
-                <li class="animate-fade-in" style="animation-delay: 1.3s;">Website by: Vincent, David</li>
-                <li class="animate-fade-in" style="animation-delay: 1.4s;">Research by: Anthony, David, Mathieu</li>
+                <li class="animate-fade-in" style="animation-delay: 1.8s;">Website by: Vincent, David</li>
+                <li class="animate-fade-in" style="animation-delay: 1.9s;">Research by: Anthony, David, Mathieu</li>
             </ul>
         </section>
     </main>
@@ -163,6 +197,18 @@
             <div class="timeline-item">
                 <h5>1955</h5>
                 <p>West Germany joins NATO</p>
+            </div>
+            <div class="timeline-item">
+                <h5>1961</h5>
+                <p>Berlin Crisis escalates tensions</p>
+            </div>
+            <div class="timeline-item">
+                <h5>1983</h5>
+                <p>Able Archer exercise tests readiness</p>
+            </div>
+            <div class="timeline-item">
+                <h5>1991</h5>
+                <p>Cold War ends, NATO adapts</p>
             </div>
             <div class="timeline-item">
                 <h5>1999</h5>
@@ -183,7 +229,7 @@
         </div>
     </div>
 
-    <footer class="bg-white text-black text-center py-4 mt-8 text-sm border-t-2 border-black">
+    <footer class="bg-white text-black text-center py-4 mt-8 text-sm border-t-4 border-black">
         <p>© 2025 NATO Research Site. All rights reserved.</p>
     </footer>
 
