@@ -3,299 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NATO Project</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Lumina | Monochrome Elegance</title>
     <style>
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        :root {
+            --primary-white: #ffffff;
+            --accent-gray: #f0f0f0;
+            --text-dark: #333333;
+            --shadow: rgba(0, 0, 0, 0.1);
         }
-        .animate-fade-in {
-            opacity: 0;
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-        .underline-hover {
-            position: relative;
-            display: inline-block;
-        }
-        .underline-hover::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 1px;
-            bottom: 0;
-            left: 0;
-            background-color: #2563eb;
-            transition: width 0.3s ease;
-        }
-        .underline-hover:hover::after {
-            width: 100%;
-        }
-        .timeline-container {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 100px;
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: var(--primary-white);
+            color: var(--text-dark);
             overflow-x: hidden;
-            background: linear-gradient(to right, #1e40af, #60a5fa);
-            border-top: 4px solid black;
-            z-index: 20;
         }
-        .timeline {
+        header {
+            background-color: var(--primary-white);
+            padding: 20px;
+            box-shadow: 0 2px 10px var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
             display: flex;
-            position: relative;
-            height: 100%;
-            transition: transform 0.1s ease-out;
-        }
-        .timeline-item {
-            flex: 0 0 auto;
-            width: 180px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            color: white;
-            border-right: 4px solid black;
-            position: relative;
         }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            top: 8px;
-            width: 8px;
-            height: 8px;
-            background: white;
-            border-radius: 50%;
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
         }
-        .timeline-item h5 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
+        .hamburger {
+            display: none;
+            font-size: 30px;
+            cursor: pointer;
         }
-        .timeline-item p {
-            font-size: 0.8rem;
-            text-align: center;
-            padding: 0 0.75rem;
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: var(--primary-white);
+            box-shadow: 2px 0 10px var(--shadow);
+            transition: left 0.4s ease;
+            padding-top: 100px;
+            z-index: 999;
+        }
+        .side-menu ul {
+            list-style: none;
+            padding: 0;
+        }
+        .side-menu li {
+            padding: 15px 30px;
+            border-bottom: 1px solid var(--accent-gray);
+            transition: background 0.3s;
+        }
+        .side-menu li:hover {
+            background-color: var(--accent-gray);
+        }
+        .side-menu a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 18px;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s;
+            z-index: 998;
         }
         main {
-            padding-bottom: 120px; /* Prevents content overlap with fixed timeline */
+            padding: 100px 20px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        section {
-            border: 4px solid black;
-            transition: background-color 0.2s ease;
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards;
         }
-        section:hover {
-            background-color: #f0f5ff; /* Light blue tint on hover */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
         }
-        .section-image {
+        .product {
+            background-color: var(--accent-gray);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px var(--shadow);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards;
+            animation-delay: 0.5s;
+        }
+        .product:hover {
+            transform: scale(1.05) translateY(-10px);
+            box-shadow: 0 10px 20px var(--shadow);
+        }
+        .product img {
             width: 100%;
-            height: 150px;
+            height: 300px;
             object-fit: cover;
-            border: 2px solid black;
-            border-radius: 4px;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.3s;
         }
-        .section-image:hover {
+        .product:hover img {
             opacity: 0.9;
+        }
+        .product-info {
+            padding: 20px;
+            text-align: center;
+        }
+        .product-info h3 {
+            margin: 0 0 10px;
+            font-size: 20px;
+        }
+        .price {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .add-to-cart {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: var(--primary-white);
+            border: 2px solid var(--text-dark);
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+        }
+        .add-to-cart:hover {
+            background-color: var(--text-dark);
+            color: var(--primary-white);
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
         }
     </style>
 </head>
-<body class="bg-white font-sans text-black">
-    <header class="bg-white text-black py-6 text-center border-b-4 border-black">
-        <h1 class="text-3xl font-semibold animate-fade-in" style="animation-delay: 0.1s;">NATO Research Site</h1>
-        <p class="mt-2 text-base animate-fade-in underline-hover" style="animation-delay: 0.2s;">
-            Exploring the history and mission of NATO
-        </p>
+<body>
+    <header>
+        <div class="logo">LUMINA</div>
+        <div class="hamburger">&#9776;</div>
     </header>
 
-    <main class="max-w-3xl mx-auto p-4 space-y-8">
-        <section class="bg-white rounded-md p-5 animate-fade-in" style="animation-delay: 0.3s;">
-            <h4 class="text-xl font-medium text-blue-600 mb-3">Quick Facts</h4>
-            <img src="https://images.unsplash.com/photo-1620131673055-7f0e4d9b4d0b?q=80&w=800&auto=format&fit=crop" alt="NATO flag" class="section-image mb-3">
-            <ul class="list-disc pl-5 space-y-1 text-black text-sm">
-                <li class="animate-fade-in" style="animation-delay: 0.4s;">NATO was created on April 4, 1949.</li>
-                <li class="animate-fade-in" style="animation-delay: 0.5s;">NATO currently has 32 members.</li>
-                <li class="animate-fade-in" style="animation-delay: 0.6s;">It is a transnational military alliance.</li>
-            </ul>
-        </section>
+    <nav class="side-menu">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Dresses</a></li>
+            <li><a href="#">Tops</a></li>
+            <li><a href="#">Shoes</a></li>
+            <li><a href="#">Outerwear</a></li>
+            <li><a href="#">Accessories</a></li>
+            <li><a href="#">Cart</a></li>
+        </ul>
+    </nav>
 
-        <section class="bg-white rounded-md p-5 animate-fade-in" style="animation-delay: 0.7s;">
-            <h4 class="text-xl font-medium text-blue-600 mb-3">What is NATO?</h4>
-            <img src="https://images.unsplash.com/photo-1597849437098-4f676adf6972?q=80&w=800&auto=format&fit=crop" alt="NATO headquarters" class="section-image mb-3">
-            <p class="text-black leading-relaxed text-sm">
-                NATO, or the North Atlantic Treaty Organization, is a military and political alliance established in 1949 to ensure the collective defense of its member countries. Headquartered in Brussels, Belgium, it currently includes 32 member nations from North America and Europe. The core principle of NATO is collective security, meaning that an attack on one member is considered an attack on all. This was famously invoked after the September 11 attacks in 2001. Originally formed to counter the Soviet threat during the Cold War, NATO now addresses a wide range of security challenges, including terrorism, cyber threats, and global instability, through joint military exercises, strategic planning, and international cooperation.
-            </p>
-        </section>
+    <div class="overlay"></div>
 
-        <section class="bg-white rounded-md p-5 animate-fade-in" style="animation-delay: 0.8s;">
-            <h4 class="text-xl font-medium text-blue-600 mb-3">History of NATO</h4>
-            <img src="https://images.unsplash.com/photo-1580130775562-0a88ab7de7b7?q=80&w=800&auto=format&fit=crop" alt="North Atlantic Treaty signing" class="section-image mb-3">
-            <p class="text-black leading-relaxed text-sm">
-                NATO was established on April 4, 1949, with the signing of the North Atlantic Treaty in Washington, D.C. The 12 founding members were Belgium, Canada, Denmark, France, Iceland, Italy, Luxembourg, the Netherlands, Norway, Portugal, the United Kingdom, and the United States. The alliance was created in response to the growing threat posed by the Soviet Union after World War II. Its primary purpose was to provide collective security against Soviet expansionism, prevent the resurgence of nationalist militarism in Europe, and encourage European political integration. Over the years, NATO has expanded to include 32 member countries and has adapted to address new security challenges in the post-Cold War era.
-            </p>
-        </section>
-
-        <section class="bg-white rounded-md p-5 animate-fade-in" style="animation-delay: 0.9s;">
-            <h4 class="text-xl font-medium text-blue-600 mb-3">NATO's Role Today</h4>
-            <img src="https://images.unsplash.com/photo-1508672019048-805c376b67b2?q=80&w=800&auto=format&fit=crop" alt="NATO joint exercise" class="section-image mb-3">
-            <p class="text-black leading-relaxed text-sm">
-                Today, NATO continues to play a crucial role in maintaining international peace and security. The alliance conducts joint military exercises, engages in crisis management operations, and collaborates with partner countries to address emerging threats such as cyber attacks and terrorism. NATO also supports democratic values and works to promote stability in regions facing conflict. Recent initiatives include supporting Ukraine in its defense against Russian aggression and enhancing collective defense measures in response to evolving global security dynamics.
-            </p>
-        </section>
-
-        <section class="bg-white rounded-md p-5 animate-fade-in" style="animation-delay: 1.0s;">
-            <h4 class="text-xl font-medium text-blue-600 mb-3">NATO's Organizational Structure</h4>
-            <img src="https://images.unsplash.com/photo-1516321318424-4d3b6a7b8f3b?q=80&w=800&auto=format&fit=crop" alt="North Atlantic Council meeting" class="section-image mb-3">
-            <p class="text-black leading-relaxed text-sm">
-                NATO's structure is designed to facilitate decision-making and coordination among member states. The North Atlantic Council (NAC), based in Brussels, is the primary decision-making body, comprising representatives from all member countries. The Secretary General, appointed for a four-year term, chairs the NAC and serves as NATO's chief spokesperson. Military operations are overseen by the Military Committee, which advises the NAC and directs NATO's two main commands: Allied Command Operations (ACO) in Mons, Belgium, and Allied Command Transformation (ACT) in Norfolk, Virginia. These bodies ensure NATO's strategic and operational effectiveness across its missions.
-            </p>
-        </section>
-
-        <section class="bg-white rounded-md p-5 animate-fade-in" style="animation-delay: 1.1s;">
-            <h4 class="text-xl font-medium text-blue-600 mb-3">Key NATO Operations</h4>
-            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800&auto=format&fit=crop" alt="NATO mission in Afghanistan" class="section-image mb-3">
-            <p class="text-black leading-relaxed text-sm">
-                NATO has undertaken numerous operations to promote security and stability. Notable missions include the International Security Assistance Force (ISAF) in Afghanistan (2003–2014), which aimed to combat terrorism and support Afghan governance, and Operation Unified Protector in Libya (2011), which enforced a no-fly zone during the Libyan civil war. More recently, NATO has led maritime security operations, such as Operation Sea Guardian in the Mediterranean, to counter terrorism and human trafficking. The alliance also conducts regular exercises, like Defender Europe, to enhance readiness and interoperability among member forces.
-            </p>
-        </section>
-
-        <section class="bg-white rounded-md p-5 animate-fade-in" style="animation-delay: 1.2s;">
-            <h4 class="text-xl font-medium text-blue-600 mb-3">NATO's Partnerships</h4>
-            <img src="https://images.unsplash.com/photo-1516321318424-4d3b6a7b8f3b?q=80&w=800&auto=format&fit=crop" alt="NATO and partner nation handshake" class="section-image mb-3">
-            <p class="text-black leading-relaxed text-sm">
-                NATO maintains partnerships with non-member countries to enhance global security. Programs like the Partnership for Peace (PfP), established in 1994, foster cooperation with countries in Europe and the former Soviet Union. NATO also collaborates with nations through the Mediterranean Dialogue, Istanbul Cooperation Initiative, and bilateral partnerships with countries like Australia and Japan. These partnerships promote joint training, interoperability, and dialogue on security issues, extending NATO's influence beyond its member states.
-            </p>
-        </section>
-
-        <section class="bg-white rounded-md p-5 animate-fade-in" style="animation-delay: 1.3s;">
-            <h4 class="text-xl font-medium text-blue-600 mb-3">NATO and Technology</h4>
-            <img src="https://images.unsplash.com/photo-1516321318424-4d3b6a7b8f3b?q=80&w=800&auto=format&fit=crop" alt="Cybersecurity control room" class="section-image mb-3">
-            <p class="text-black leading-relaxed text-sm">
-                NATO invests in emerging technologies to address modern security challenges. The Defence Innovation Accelerator for the North Atlantic (DIANA) supports research in AI, cybersecurity, and quantum computing. NATO's Science and Technology Organization (STO) conducts cutting-edge research to enhance defense capabilities. These initiatives ensure the alliance remains at the forefront of technological advancements, particularly in countering cyber threats and hybrid warfare.
-            </p>
-        </section>
-
-        <section class="bg-white rounded-md p-5 animate-fade-in" style="animation-delay: 1.4s;">
-            <h4 class="text-xl font-medium text-blue-600 mb-3">NATO Enlargement Process</h4>
-            <img src="https://images.unsplash.com/photo-1516321318424-4d3b6a7b8f3b?q=80&w=800&auto=format&fit=crop" alt="Map of NATO member states" class="section-image mb-3">
-            <p class="text-black leading-relaxed text-sm">
-                NATO's enlargement process allows countries to join the alliance through a structured accession process. Aspiring members must meet democratic, military, and economic standards outlined in the 1995 Study on NATO Enlargement. Countries like Finland and Sweden joined in 2023 and 2024, respectively, after completing Membership Action Plans (MAPs). The open-door policy remains a cornerstone of NATO's commitment to expanding collective security.
-            </p>
-        </section>
-
-        <section class="bg-white rounded-md p-5 animate-fade-in" style="animation-delay: 1.5s;">
-            <h4 class="text-xl font-medium text-blue-600 mb-3">NATO's Crisis Response</h4>
-            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800&auto=format&fit=crop" alt="NATO Response Force deployment" class="section-image mb-3">
-            <p class="text-black leading-relaxed text-sm">
-                NATO plays a vital role in crisis response, deploying forces and resources to address conflicts and humanitarian emergencies. The NATO Response Force (NRF), established in 2002, provides rapid deployment capabilities for crises like natural disasters or military conflicts. Operations in Kosovo (KFOR) and support for disaster relief, such as after the 2005 Pakistan earthquake, demonstrate NATO's commitment to global stability and humanitarian aid.
-            </p>
-        </section>
-
-        <section class="bg-white rounded-md p-5 animate-fade-in" style="animation-delay: 1.6s;">
-            <h4 class="text-xl font-medium text-blue-600 mb-3">Future Challenges for NATO</h4>
-            <img src="https://images.unsplash.com/photo-1516321318424-4d3b6a7b8f3b?q=80&w=800&auto=format&fit=crop" alt="Hybrid warfare scenario" class="section-image mb-3">
-            <p class="text-black leading-relaxed text-sm">
-                NATO faces evolving challenges, including hybrid warfare, climate change, and geopolitical tensions. The alliance is adapting by strengthening cyber defenses, addressing the security implications of climate change, and countering disinformation campaigns. NATO's 2022 Strategic Concept emphasizes resilience and partnerships to tackle these issues, ensuring the alliance remains prepared for future threats in a rapidly changing world.
-            </p>
-        </section>
-
-        <section class="bg-white rounded-md p-5 animate-fade-in" style="animation-delay: 1.7s;">
-            <h4 class="text-xl font-medium text-blue-600 mb-3">Credits</h4>
-            <img src="https://images.unsplash.com/photo-1516321318424-4d3b6a7b8f3b?q=80&w=800&auto=format&fit=crop" alt="Team collaboration" class="section-image mb-3">
-            <ul class="list-none space-y-1 text-black text-sm">
-                <li class="animate-fade-in" style="animation-delay: 1.8s;">Website by: Vincent, David</li>
-                <li class="animate-fade-in" style="animation-delay: 1.9s;">Research by: Anthony, David, Mathieu</li>
-            </ul>
-        </section>
-    </main>
-
-    <div class="timeline-container">
-        <div class="timeline">
-            <div class="timeline-item">
-                <h5>1949</h5>
-                <p>NATO founded with 12 members</p>
+    <main>
+        <h1>Monochrome Elegance Collection</h1>
+        <div class="products">
+            <div class="product">
+                <img src="https://assets.vogue.com/photos/688cfbeb67a3a46507fb905d/16:9/w_1920,h_1080,c_limit/white%20outfit%20collage.jpg" alt="Minimalist White Ensemble">
+                <div class="product-info">
+                    <h3>All-White Ensemble</h3>
+                    <p class="price">$299</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
             </div>
-            <div class="timeline-item">
-                <h5>1952</h5>
-                <p>Greece and Türkiye join NATO</p>
+            <div class="product">
+                <img src="http://camillasbridal.com/cdn/shop/files/rosie_style_a_model_wearing_a_luxurious_yet_simple_wedding_dress_standing_in_an_opulent_setting_the_755nf5qn95ijoq1g0ch1_2.png?v=1743175121" alt="Elegant White Dress">
+                <div class="product-info">
+                    <h3>Simple V-Neck Dress</h3>
+                    <p class="price">$449</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
             </div>
-            <div class="timeline-item">
-                <h5>1955</h5>
-                <p>West Germany joins NATO</p>
+            <div class="product">
+                <img src="https://www.instyle.com/thmb/quScq2qRazNdvnu69jZwNB2RRUA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1407831789-c36e7e53761f476a8578ec1e539ba5c2.jpg" alt="Stylish White Shirt Outfit">
+                <div class="product-info">
+                    <h3>Oversized White Shirt</h3>
+                    <p class="price">$179</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
             </div>
-            <div class="timeline-item">
-                <h5>1961</h5>
-                <p>Berlin Crisis escalates tensions</p>
+            <div class="product">
+                <img src="https://cdn.thewirecutter.com/wp-content/media/2025/06/BEST-WHITE-SNEAKERS-SUB-2048px-3908.jpg?auto=webp&quality=75&width=1024" alt="Minimalist White Sneakers">
+                <div class="product-info">
+                    <h3>Classic White Sneakers</h3>
+                    <p class="price">$129</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
             </div>
-            <div class="timeline-item">
-                <h5>1966</h5>
-                <p>France exits military structure</p>
-            </div>
-            <div class="timeline-item">
-                <h5>1979</h5>
-                <p>Dual-Track Decision on missiles</p>
-            </div>
-            <div class="timeline-item">
-                <h5>1983</h5>
-                <p>Able Archer exercise tests readiness</p>
-            </div>
-            <div class="timeline-item">
-                <h5>1989</h5>
-                <p>Berlin Wall falls, Cold War wanes</p>
-            </div>
-            <div class="timeline-item">
-                <h5>1991</h5>
-                <p>Cold War ends, NATO adapts</p>
-            </div>
-            <div class="timeline-item">
-                <h5>1995</h5>
-                <p>Bosnia operation (Deliberate Force)</p>
-            </div>
-            <div class="timeline-item">
-                <h5>1999</h5>
-                <p>Poland, Hungary, Czech Republic join</p>
-            </div>
-            <div class="timeline-item">
-                <h5>2001</h5>
-                <p>Article 5 invoked after 9/11</p>
-            </div>
-            <div class="timeline-item">
-                <h5>2004</h5>
-                <p>Seven Eastern European nations join</p>
-            </div>
-            <div class="timeline-item">
-                <h5>2017</h5>
-                <p>Montenegro joins NATO</p>
-            </div>
-            <div class="timeline-item">
-                <h5>2020</h5>
-                <p>North Macedonia joins as 30th member</p>
+            <div class="product">
+                <img src="https://i0.wp.com/www.thefashionhour.com/wp-content/uploads/2021/02/01.27.21Chic513-1440x960.jpg?resize=780%2C520&ssl=1" alt="White Trench Coat">
+                <div class="product-info">
+                    <h3>Elegant Trench Coat</h3>
+                    <p class="price">$399</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
             </div>
         </div>
-    </div>
-
-    <footer class="bg-white text-black text-center py-4 mt-8 text-sm border-t-4 border-black">
-        <p>© 2025 NATO Research Site. All rights reserved.</p>
-    </footer>
+    </main>
 
     <script>
-        function updateTimeline() {
-            const timeline = document.querySelector('.timeline');
-            const timelineContainer = document.querySelector('.timeline-container');
-            const timelineWidth = timeline.scrollWidth - timelineContainer.offsetWidth;
+        const hamburger = document.querySelector('.hamburger');
+        const sideMenu = document.querySelector('.side-menu');
+        const overlay = document.querySelector('.overlay');
 
-            window.addEventListener('scroll', () => {
-                const scrollPercentage = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-                const translateX = Math.max(-timelineWidth, Math.min(0, -scrollPercentage * timelineWidth));
-                timeline.style.transform = `translateX(${translateX}px)`;
-            });
-        }
+        hamburger.addEventListener('click', () => {
+            sideMenu.style.left = sideMenu.style.left === '0px' ? '-250px' : '0px';
+            overlay.style.opacity = overlay.style.opacity === '1' ? '0' : '1';
+            overlay.style.visibility = overlay.style.visibility === 'visible' ? 'hidden' : 'visible';
+        });
 
-        // Initial call and update on resize
-        updateTimeline();
-        window.addEventListener('resize', updateTimeline);
+        overlay.addEventListener('click', () => {
+            sideMenu.style.left = '-250px';
+            overlay.style.opacity = '0';
+            overlay.style.visibility = 'hidden';
+        });
     </script>
 </body>
 </html>
