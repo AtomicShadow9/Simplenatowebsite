@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lumina | Monochrome Elegance</title>
+    <title>Neiche Apparel Co | Alpine Monochrome Collection</title>
     <style>
         :root {
             --primary-white: #ffffff;
@@ -32,9 +32,10 @@
             align-items: center;
         }
         .logo {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: bold;
-            letter-spacing: 2px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
         }
         .hamburger {
             display: none;
@@ -246,17 +247,16 @@
 </head>
 <body>
     <header>
-        <div class="logo">LUMINA</div>
+        <div class="logo">NEICHE APPAREL CO</div>
         <div class="hamburger">&#9776;</div>
     </header>
 
     <nav class="side-menu">
         <ul>
             <li><a href="#">Home</a></li>
-            <li><a href="#">Dresses</a></li>
-            <li><a href="#">Tops</a></li>
-            <li><a href="#">Shoes</a></li>
-            <li><a href="#">Outerwear</a></li>
+            <li><a href="#">Jackets</a></li>
+            <li><a href="#">Pants</a></li>
+            <li><a href="#">Base Layers</a></li>
             <li><a href="#">Accessories</a></li>
             <li><a href="#">Cart</a></li>
         </ul>
@@ -267,78 +267,86 @@
     <div id="toast-container"></div>
 
     <main>
-        <h1>Monochrome Elegance Collection</h1>
+        <h1>Alpine Monochrome Collection</h1>
 
         <!-- Tabs -->
         <div class="tabs">
             <button class="tab-button active" data-tab="all">All Items</button>
-            <button class="tab-button" data-tab="dresses">Dresses</button>
-            <button class="tab-button" data-tab="tops">Tops</button>
-            <button class="tab-button" data-tab="shoes">Shoes</button>
-            <button class="tab-button" data-tab="outerwear">Outerwear</button>
+            <button class="tab-button" data-tab="jackets">Jackets</button>
+            <button class="tab-button" data-tab="pants">Pants</button>
+            <button class="tab-button" data-tab="baselayers">Base Layers</button>
+            <button class="tab-button" data-tab="accessories">Accessories</button>
         </div>
 
         <!-- Tab Contents -->
         <div id="all" class="tab-content active">
             <div class="products" id="all-products">
-                <!-- All products will be cloned here via JS -->
+                <!-- All products cloned via JS -->
             </div>
         </div>
 
-        <div id="dresses" class="tab-content">
+        <div id="jackets" class="tab-content">
             <div class="products">
-                <div class="product" data-category="dresses">
-                    <img src="https://cdn3.pixelcut.app/1/H1_5b8b9a246b.webp" alt="White Dress Flat Lay">
+                <div class="product" data-category="jackets">
+                    <img src="https://i.etsystatic.com/6271332/r/il/190631/6131014073/il_340x270.6131014073_62n0.jpg" alt="White Insulated Ski Jacket">
                     <div class="product-info">
-                        <h3>Minimalist White Dress</h3>
-                        <p class="price">$449</p>
+                        <h3>Alpine Insulated Jacket</h3>
+                        <p class="price">$599</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product" data-category="jackets">
+                    <img src="https://cdn.accentuate.io/45307930869931/1753303711096/DESKTOP-FULL-WIDTH.jpg?v=1753303711096" alt="White Shell Ski Jacket">
+                    <div class="product-info">
+                        <h3>Technical Shell Jacket</h3>
+                        <p class="price">$499</p>
                         <button class="add-to-cart">Add to Cart</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id="tops" class="tab-content">
+        <div id="pants" class="tab-content">
             <div class="products">
-                <div class="product" data-category="tops">
-                    <img src="https://www.shutterstock.com/image-photo/white-oversize-tshirt-mockup-realistic-600nw-2624341169.jpg" alt="Oversized White Shirt">
+                <div class="product" data-category="pants">
+                    <img src="https://thumbs.dreamstime.com/b/blank-white-mens-pants-mock-up-isolated-front-back-side-view-empty-classic-male-trousers-mockup-clear-denim-clothing-work-131590376.jpg" alt="White Ski Pants">
                     <div class="product-info">
-                        <h3>Oversized White Shirt</h3>
-                        <p class="price">$179</p>
-                        <button class="add-to-cart">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="product" data-category="tops">
-                    <img src="https://m.media-amazon.com/images/I/71n0T0t6TPL._AC_SY575_.jpg" alt="White Blazer Flat Lay">
-                    <div class="product-info">
-                        <h3>Tailored White Blazer</h3>
-                        <p class="price">$349</p>
+                        <h3>Performance Ski Pants</h3>
+                        <p class="price">$399</p>
                         <button class="add-to-cart">Add to Cart</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id="shoes" class="tab-content">
+        <div id="baselayers" class="tab-content">
             <div class="products">
-                <div class="product" data-category="shoes">
-                    <img src="https://media.istockphoto.com/id/861817600/photo/the-sneakers-on-white.jpg?s=612x612&w=0&k=20&c=aeUdVq2n7kpxXSianJW5Y1nac_1jCo3h_gnBA4AQUi8=" alt="Classic White Sneakers">
+                <div class="product" data-category="baselayers">
+                    <img src="https://i.ebayimg.com/images/g/A1IAAOSwuHdca4~x/s-l1200.jpg" alt="White Thermal Base Layer">
                     <div class="product-info">
-                        <h3>Classic White Sneakers</h3>
+                        <h3>Thermal Base Layer Top</h3>
+                        <p class="price">$149</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="accessories" class="tab-content">
+            <div class="products">
+                <div class="product" data-category="accessories">
+                    <img src="https://c8.alamy.com/comp/PFX7XW/blank-knitted-winter-gloves-mock-up-set-front-and-back-side-view-clear-ski-or-snowboard-mittens-mockup-isolated-on-white-warm-hand-clothes-design-template-arm-accessory-presentation-branding-PFX7XW.jpg" alt="White Ski Gloves">
+                    <div class="product-info">
+                        <h3>Insulated Ski Gloves</h3>
                         <p class="price">$129</p>
                         <button class="add-to-cart">Add to Cart</button>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div id="outerwear" class="tab-content">
-            <div class="products">
-                <div class="product" data-category="outerwear">
-                    <img src="https://static.vecteezy.com/system/resources/thumbnails/075/230/440/small_2x/white-winter-coat-hanging-on-wooden-hanger-photo.jpg" alt="Elegant White Trench Coat">
+                <div class="product" data-category="accessories">
+                    <img src="https://l450v.alamy.com/450v/2arajr3/blank-white-protect-helmet-mockup-front-and-side-view-2arajr3.jpg" alt="White Ski Helmet">
                     <div class="product-info">
-                        <h3>Elegant Trench Coat</h3>
-                        <p class="price">$399</p>
+                        <h3>Minimalist Ski Helmet</h3>
+                        <p class="price">$249</p>
                         <button class="add-to-cart">Add to Cart</button>
                     </div>
                 </div>
@@ -370,11 +378,9 @@
 
         tabButtons.forEach(button => {
             button.addEventListener('click', () => {
-                // Remove active class from all
                 tabButtons.forEach(btn => btn.classList.remove('active'));
                 tabContents.forEach(content => content.classList.remove('active'));
 
-                // Add active to clicked
                 button.classList.add('active');
                 const tabId = button.getAttribute('data-tab');
                 document.getElementById(tabId).classList.add('active');
@@ -391,7 +397,6 @@
                 allProductsContainer.appendChild(clone);
             });
 
-            // Re-attach event listeners to cloned buttons
             attachCartListeners();
         });
 
@@ -421,10 +426,10 @@
             });
         }
 
-        // Attach cart listeners (call after cloning too)
+        // Attach cart listeners
         function attachCartListeners() {
             document.querySelectorAll('.add-to-cart').forEach(button => {
-                button.onclick = null; // Prevent duplicates
+                button.onclick = null;
                 button.addEventListener('click', (e) => {
                     const productName = e.target.closest('.product-info').querySelector('h3').textContent;
                     showToast(`${productName} added to cart!`);
@@ -432,7 +437,7 @@
             });
         }
 
-        // Initial attachment for original products
+        // Initial attachment
         attachCartListeners();
     </script>
 </body>
