@@ -10,6 +10,7 @@
             --accent-gray: #f0f0f0;
             --text-dark: #333333;
             --shadow: rgba(0, 0, 0, 0.1);
+            --active-tab: #e0e0e0;
         }
         body {
             margin: 0;
@@ -89,14 +90,50 @@
         h1 {
             text-align: center;
             font-size: 36px;
-            margin-bottom: 50px;
+            margin-bottom: 20px;
             opacity: 0;
             animation: fadeIn 1.5s forwards;
         }
+
+        /* Tabs Styles */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .tab-button {
+            padding: 12px 24px;
+            background-color: var(--accent-gray);
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+            border-radius: 8px 8px 0 0;
+        }
+        .tab-button.active {
+            background-color: var(--active-tab);
+            font-weight: bold;
+            border-bottom: 3px solid var(--text-dark);
+        }
+        .tab-button:hover:not(.active) {
+            background-color: var(--active-tab);
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
         .products {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards 0.3s;
         }
         .product {
             background-color: var(--accent-gray);
@@ -104,9 +141,6 @@
             overflow: hidden;
             box-shadow: 0 4px 10px var(--shadow);
             transition: transform 0.4s ease, box-shadow 0.4s ease;
-            opacity: 0;
-            animation: fadeIn 1.5s forwards;
-            animation-delay: 0.5s;
         }
         .product:hover {
             transform: scale(1.05) translateY(-10px);
@@ -115,7 +149,8 @@
         .product img {
             width: 100%;
             height: 300px;
-            object-fit: cover;
+            object-fit: contain;
+            background-color: var(--primary-white);
             transition: opacity 0.3s;
         }
         .product:hover img {
@@ -145,11 +180,67 @@
             background-color: var(--text-dark);
             color: var(--primary-white);
         }
+
         @keyframes fadeIn {
             to { opacity: 1; }
         }
+
+        /* Toast Styles */
+        #toast-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .toast {
+            min-width: 300px;
+            background-color: var(--text-dark);
+            color: var(--primary-white);
+            padding: 16px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px var(--shadow);
+            opacity: 0;
+            transform: translateX(100%);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .toast .close-toast {
+            cursor: pointer;
+            font-size: 20px;
+            margin-left: 20px;
+            opacity: 0.7;
+        }
+        .toast .close-toast:hover {
+            opacity: 1;
+        }
+
         @media (max-width: 768px) {
             .hamburger { display: block; }
+            #toast-container {
+                bottom: 20px;
+                right: 20px;
+                left: 20px;
+            }
+            .toast {
+                min-width: auto;
+            }
+            .tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            .tab-button {
+                width: 80%;
+                border-radius: 8px;
+            }
         }
     </style>
 </head>
@@ -173,53 +264,90 @@
 
     <div class="overlay"></div>
 
+    <div id="toast-container"></div>
+
     <main>
         <h1>Monochrome Elegance Collection</h1>
-        <div class="products">
-            <div class="product">
-                <img src="https://assets.vogue.com/photos/688cfbeb67a3a46507fb905d/16:9/w_1920,h_1080,c_limit/white%20outfit%20collage.jpg" alt="Minimalist White Ensemble">
-                <div class="product-info">
-                    <h3>All-White Ensemble</h3>
-                    <p class="price">$299</p>
-                    <button class="add-to-cart">Add to Cart</button>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-button active" data-tab="all">All Items</button>
+            <button class="tab-button" data-tab="dresses">Dresses</button>
+            <button class="tab-button" data-tab="tops">Tops</button>
+            <button class="tab-button" data-tab="shoes">Shoes</button>
+            <button class="tab-button" data-tab="outerwear">Outerwear</button>
+        </div>
+
+        <!-- Tab Contents -->
+        <div id="all" class="tab-content active">
+            <div class="products" id="all-products">
+                <!-- All products will be cloned here via JS -->
+            </div>
+        </div>
+
+        <div id="dresses" class="tab-content">
+            <div class="products">
+                <div class="product" data-category="dresses">
+                    <img src="https://cdn3.pixelcut.app/1/H1_5b8b9a246b.webp" alt="White Dress Flat Lay">
+                    <div class="product-info">
+                        <h3>Minimalist White Dress</h3>
+                        <p class="price">$449</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
                 </div>
             </div>
-            <div class="product">
-                <img src="http://camillasbridal.com/cdn/shop/files/rosie_style_a_model_wearing_a_luxurious_yet_simple_wedding_dress_standing_in_an_opulent_setting_the_755nf5qn95ijoq1g0ch1_2.png?v=1743175121" alt="Elegant White Dress">
-                <div class="product-info">
-                    <h3>Simple V-Neck Dress</h3>
-                    <p class="price">$449</p>
-                    <button class="add-to-cart">Add to Cart</button>
+        </div>
+
+        <div id="tops" class="tab-content">
+            <div class="products">
+                <div class="product" data-category="tops">
+                    <img src="https://www.shutterstock.com/image-photo/white-oversize-tshirt-mockup-realistic-600nw-2624341169.jpg" alt="Oversized White Shirt">
+                    <div class="product-info">
+                        <h3>Oversized White Shirt</h3>
+                        <p class="price">$179</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product" data-category="tops">
+                    <img src="https://m.media-amazon.com/images/I/71n0T0t6TPL._AC_SY575_.jpg" alt="White Blazer Flat Lay">
+                    <div class="product-info">
+                        <h3>Tailored White Blazer</h3>
+                        <p class="price">$349</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
                 </div>
             </div>
-            <div class="product">
-                <img src="https://www.instyle.com/thmb/quScq2qRazNdvnu69jZwNB2RRUA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1407831789-c36e7e53761f476a8578ec1e539ba5c2.jpg" alt="Stylish White Shirt Outfit">
-                <div class="product-info">
-                    <h3>Oversized White Shirt</h3>
-                    <p class="price">$179</p>
-                    <button class="add-to-cart">Add to Cart</button>
+        </div>
+
+        <div id="shoes" class="tab-content">
+            <div class="products">
+                <div class="product" data-category="shoes">
+                    <img src="https://media.istockphoto.com/id/861817600/photo/the-sneakers-on-white.jpg?s=612x612&w=0&k=20&c=aeUdVq2n7kpxXSianJW5Y1nac_1jCo3h_gnBA4AQUi8=" alt="Classic White Sneakers">
+                    <div class="product-info">
+                        <h3>Classic White Sneakers</h3>
+                        <p class="price">$129</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
                 </div>
             </div>
-            <div class="product">
-                <img src="https://cdn.thewirecutter.com/wp-content/media/2025/06/BEST-WHITE-SNEAKERS-SUB-2048px-3908.jpg?auto=webp&quality=75&width=1024" alt="Minimalist White Sneakers">
-                <div class="product-info">
-                    <h3>Classic White Sneakers</h3>
-                    <p class="price">$129</p>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
-            <div class="product">
-                <img src="https://i0.wp.com/www.thefashionhour.com/wp-content/uploads/2021/02/01.27.21Chic513-1440x960.jpg?resize=780%2C520&ssl=1" alt="White Trench Coat">
-                <div class="product-info">
-                    <h3>Elegant Trench Coat</h3>
-                    <p class="price">$399</p>
-                    <button class="add-to-cart">Add to Cart</button>
+        </div>
+
+        <div id="outerwear" class="tab-content">
+            <div class="products">
+                <div class="product" data-category="outerwear">
+                    <img src="https://static.vecteezy.com/system/resources/thumbnails/075/230/440/small_2x/white-winter-coat-hanging-on-wooden-hanger-photo.jpg" alt="Elegant White Trench Coat">
+                    <div class="product-info">
+                        <h3>Elegant Trench Coat</h3>
+                        <p class="price">$399</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
 
     <script>
+        // Side Menu Toggle
         const hamburger = document.querySelector('.hamburger');
         const sideMenu = document.querySelector('.side-menu');
         const overlay = document.querySelector('.overlay');
@@ -235,6 +363,77 @@
             overlay.style.opacity = '0';
             overlay.style.visibility = 'hidden';
         });
+
+        // Tabs Functionality
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+
+                // Add active to clicked
+                button.classList.add('active');
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Clone all products into "All Items" tab on load
+        window.addEventListener('load', () => {
+            const allProductsContainer = document.getElementById('all-products');
+            const allIndividualProducts = document.querySelectorAll('.product');
+
+            allIndividualProducts.forEach(product => {
+                const clone = product.cloneNode(true);
+                allProductsContainer.appendChild(clone);
+            });
+
+            // Re-attach event listeners to cloned buttons
+            attachCartListeners();
+        });
+
+        // Toast Notification
+        function showToast(message) {
+            const toastContainer = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.classList.add('toast');
+            toast.innerHTML = `
+                <span>${message}</span>
+                <span class="close-toast">&times;</span>
+            `;
+
+            toastContainer.appendChild(toast);
+
+            setTimeout(() => toast.classList.add('show'), 100);
+
+            const timeout = setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 400);
+            }, 4000);
+
+            toast.querySelector('.close-toast').addEventListener('click', () => {
+                clearTimeout(timeout);
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 400);
+            });
+        }
+
+        // Attach cart listeners (call after cloning too)
+        function attachCartListeners() {
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.onclick = null; // Prevent duplicates
+                button.addEventListener('click', (e) => {
+                    const productName = e.target.closest('.product-info').querySelector('h3').textContent;
+                    showToast(`${productName} added to cart!`);
+                });
+            });
+        }
+
+        // Initial attachment for original products
+        attachCartListeners();
     </script>
 </body>
 </html>
